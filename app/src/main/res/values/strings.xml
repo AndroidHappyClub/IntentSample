@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">IntentSample</string>
+    <string name="image">图片</string>
 </resources>

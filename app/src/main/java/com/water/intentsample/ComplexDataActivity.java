@@ -2,35 +2,35 @@ package com.water.intentsample;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
+import com.water.intentsample.databinding.ActivityComplexDataBinding;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ComplexDataActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_complex_data);
-
-        TextView tv = (TextView)findViewById(R.id.tvContent);
-        ImageView iv = (ImageView)findViewById(R.id.ivBmp);
+        com.water.intentsample.databinding.ActivityComplexDataBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_complex_data);
 
         MyApplication ma = MyApplication.getInstance();
-        tv.setText(ma.getName());
+        binding.tvContent.setText(ma.getName());
 
         Intent intent = getIntent();
         Bundle bd = intent.getExtras();
-        String[] str = bd.getStringArray("StringArray");
         ArrayList<String> alStr = intent.getStringArrayListExtra("StringList");
 
-        List<RequestCode> rcs = (List<RequestCode>) bd.getSerializable("ObjectList");
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alStr);
+
+        binding.list.setAdapter(arrayAdapter);
 
         Bitmap bmp = bd.getParcelable("bitmap");
-        iv.setImageBitmap(bmp);
+        binding.ivBmp.setImageBitmap(bmp);
     }
 }
