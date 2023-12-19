@@ -1,0 +1,25 @@
+[versions]
+appcompat = "1.6.1"
+constraintlayout = "2.1.4"
+espresso-core = "3.0.2"
+gradle = "8.2.0"
+junit = "4.13.2"
+kotlin-gradle-plugin = "2.0.0-Beta2"
+material = "1.12.0-alpha02"
+okhttp = "4.12.0"
+runner = "1.0.2"
+vastadapter = "0.1.1"
+vasttools = "0.5.6"
+
+[libraries]
+appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+espresso-core = { module = "com.android.support.test.espresso:espresso-core", version.ref = "espresso-core" }
+gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+junit = { module = "junit:junit", version.ref = "junit" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-gradle-plugin" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+runner = { module = "com.android.support.test:runner", version.ref = "runner" }
+vastadapter = { module = "io.github.sakurajimamaii:VastAdapter", version.ref = "vastadapter" }
+vasttools = { module = "io.github.sakurajimamaii:VastTools", version.ref = "vasttools" }
