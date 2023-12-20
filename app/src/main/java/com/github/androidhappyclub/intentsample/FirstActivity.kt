@@ -29,8 +29,7 @@ import android.os.Bundle
 import android.widget.CheckBox
 import androidx.appcompat.app.AppCompatActivity
 import com.ave.vastgui.tools.viewbinding.viewBinding
-import com.github.androidhappyclub.datasample.intentsample.R
-import com.github.androidhappyclub.datasample.intentsample.databinding.ActivityFirstBinding
+import com.github.androidhappyclub.intentsample.databinding.ActivityFirstBinding
 
 class FirstActivity : AppCompatActivity(R.layout.activity_first) {
 

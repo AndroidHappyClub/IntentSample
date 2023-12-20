@@ -26,7 +26,7 @@ package com.github.androidhappyclub.intentsample.adapter
 
 import com.ave.vastgui.adapter.widget.AdapterClickListener
 import com.ave.vastgui.adapter.widget.AdapterItemWrapper
-import com.github.androidhappyclub.datasample.intentsample.R
+import com.github.androidhappyclub.intentsample.R
 import com.github.androidhappyclub.intentsample.adapter.model.IntentItem
 
 // Author: Vast Gui

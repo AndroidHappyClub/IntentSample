@@ -32,7 +32,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.github.androidhappyclub.datasample.intentsample"
+        applicationId = "com.github.androidhappyclub.intentsample"
         minSdk = 23
         targetSdk = 34
         versionCode = 1
@@ -62,7 +62,7 @@ android {
         viewBinding = true
     }
 
-    namespace = "com.github.androidhappyclub.datasample.intentsample"
+    namespace = "com.github.androidhappyclub.intentsample"
 }
 
 dependencies {

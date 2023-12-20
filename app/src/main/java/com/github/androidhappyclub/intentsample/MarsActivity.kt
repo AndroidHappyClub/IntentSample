@@ -28,8 +28,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.ave.vastgui.tools.viewbinding.viewBinding
-import com.github.androidhappyclub.datasample.intentsample.R
-import com.github.androidhappyclub.datasample.intentsample.databinding.ActivityMarsBinding
+import com.github.androidhappyclub.intentsample.databinding.ActivityMarsBinding
 
 class MarsActivity : AppCompatActivity(R.layout.activity_mars) {
 

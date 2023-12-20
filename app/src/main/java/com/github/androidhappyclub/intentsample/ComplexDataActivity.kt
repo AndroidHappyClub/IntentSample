@@ -32,8 +32,7 @@ import com.ave.vastgui.tools.graphics.BmpUtils
 import com.ave.vastgui.tools.os.getParcelable
 import com.ave.vastgui.tools.utils.AppUtils
 import com.ave.vastgui.tools.viewbinding.viewBinding
-import com.github.androidhappyclub.datasample.intentsample.R
-import com.github.androidhappyclub.datasample.intentsample.databinding.ActivityComplexDataBinding
+import com.github.androidhappyclub.intentsample.databinding.ActivityComplexDataBinding
 
 class ComplexDataActivity : AppCompatActivity(R.layout.activity_complex_data) {
 

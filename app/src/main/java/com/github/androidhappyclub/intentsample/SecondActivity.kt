@@ -27,8 +27,7 @@ package com.github.androidhappyclub.intentsample
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.ave.vastgui.tools.viewbinding.viewBinding
-import com.github.androidhappyclub.datasample.intentsample.R
-import com.github.androidhappyclub.datasample.intentsample.databinding.ActivitySecondBinding
+import com.github.androidhappyclub.intentsample.databinding.ActivitySecondBinding
 
 class SecondActivity : AppCompatActivity(R.layout.activity_second) {
 

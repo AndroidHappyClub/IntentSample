@@ -28,7 +28,7 @@ import android.content.Context
 import android.view.View
 import com.ave.vastgui.adapter.VastBindAdapter
 import com.ave.vastgui.adapter.widget.AdapterClickListener
-import com.github.androidhappyclub.datasample.intentsample.BR
+import com.github.androidhappyclub.intentsample.BR
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com

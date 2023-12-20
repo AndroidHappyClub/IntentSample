@@ -53,9 +53,8 @@ import com.ave.vastgui.tools.utils.permission.Permission
 import com.ave.vastgui.tools.utils.permission.requestPermission
 import com.ave.vastgui.tools.view.toast.SimpleToast
 import com.ave.vastgui.tools.viewbinding.viewBinding
-import com.github.androidhappyclub.datasample.intentsample.R
-import com.github.androidhappyclub.datasample.intentsample.databinding.ActivityIntentBinding
 import com.github.androidhappyclub.intentsample.adapter.IntentItemAdapter
+import com.github.androidhappyclub.intentsample.databinding.ActivityIntentBinding
 import com.github.androidhappyclub.intentsample.logger.mLogFactory
 import java.io.File
 
