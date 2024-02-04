@@ -24,50 +24,46 @@
 
 package com.github.androidhappyclub.intentsample
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.CheckBox
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.OnBackPressedCallback
 import com.ave.vastgui.tools.viewbinding.viewBinding
-import com.github.androidhappyclub.intentsample.databinding.ActivityFirstBinding
+import com.github.androidhappyclub.intentsample.databinding.ActivitySelectedHobbyBinding
 
-class FirstActivity : AppCompatActivity(R.layout.activity_first) {
+class SelectedHobbyActivity : LifecycleActivity(R.layout.activity_selected_hobby) {
 
-    companion object{
-        const val COUNT_KEY = "COUNT_KEY"
-    }
-
-    private val binding by viewBinding(ActivityFirstBinding::bind)
-    private val checkBoxes: MutableList<CheckBox> = ArrayList()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // 添加到集合中
-        checkBoxes.add(binding.cbxSing)
-        checkBoxes.add(binding.cbxDance)
-        checkBoxes.add(binding.cbxSport)
-        checkBoxes.add(binding.cbxReadBook)
-
-        binding.btnSubmit.setOnClickListener{
-            val bundle = Bundle()
-            var i = 0
-
-            //将选中的喜好放到bundle中
-            for (cbx in checkBoxes) {
-                if (cbx.isChecked) {
-                    bundle.putString("$i", "${cbx.text}")
-                    i++
-                }
-            }
-
-            //喜好的个数也放到bundle中
-            bundle.putInt(COUNT_KEY, i)
-            val intent = Intent(this, SecondActivity::class.java).apply {
-                putExtras(bundle)
-            }
-            startActivity(intent)
+    private inner class IOnBackPressedCallback : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            finish()
         }
     }
 
+    private val binding by viewBinding(ActivitySelectedHobbyBinding::bind)
+    private val mIOnBackPressedCallback by lazy {
+        IOnBackPressedCallback()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        onBackPressedDispatcher.addCallback(mIOnBackPressedCallback)
+
+        //先获取用户的喜好个数
+        val count = intent.getIntExtra(HobbyActivity.COUNT_KEY, 0)
+        val sb = StringBuilder()
+
+        //遍历喜好的内容
+        for (i in 0 until count) {
+            sb.append("${intent.getStringExtra("$i")} ")
+        }
+
+        //显示喜好
+        binding.hobbyContent.text = sb.toString()
+        binding.btnBack.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
+    }
+
+    override fun onDestroy() {
+        mIOnBackPressedCallback.remove()
+        super.onDestroy()
+    }
 }

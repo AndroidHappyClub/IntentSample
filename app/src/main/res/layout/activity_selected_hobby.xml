@@ -27,22 +27,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IntentActivity">
+    tools:context="com.github.androidhappyclub.intentsample.SelectedHobbyActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/intents"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        app:layout_constraintBottom_toTopOf="@id/ivPhoto"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/hobby"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/hobby_selected"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@id/hobbyContent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/ivPhoto"
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/hobbyContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toEndOf="@id/hobby"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBack"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scaleType="fitXY"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginHorizontal="10dp"
+        android:text="@string/back"
+        app:layout_constraintTop_toBottomOf="@id/hobby" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="300dp"
+        android:layout_height="400dp"
+        android:src="@drawable/hobby"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/intents" />
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,11 +26,10 @@ package com.github.androidhappyclub.intentsample
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.ave.vastgui.tools.viewbinding.viewBinding
 import com.github.androidhappyclub.intentsample.databinding.ActivityMarsBinding
 
-class MarsActivity : AppCompatActivity(R.layout.activity_mars) {
+class MarsActivity : LifecycleActivity(R.layout.activity_mars) {
 
     private val binding by viewBinding(ActivityMarsBinding::bind)
 

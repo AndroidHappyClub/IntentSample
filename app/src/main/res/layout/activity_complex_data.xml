@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ MIT License
   ~
   ~ Copyright (c) 2023 AndroidHappyClub
@@ -23,38 +22,25 @@
   ~ SOFTWARE.
   -->
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.github.androidhappyclub.intentsample.ComplexDataActivity">
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".ComplexDataActivity">
 
-    <LinearLayout
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivBmp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="3"
+        android:contentDescription="@string/image"
+        android:scaleType="fitCenter" />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvContent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="30sp" />
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/ivBmp"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="3"
-            android:contentDescription="@string/image"
-            android:scaleType="center" />
-
-        <ListView
-            android:id="@+id/list"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="6" />
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6" />
+</LinearLayout>

@@ -24,5 +24,15 @@
 
 <resources>
     <string name="app_name">IntentSample</string>
+    <string name="back">返回</string>
+    <string name="complex_data">复杂数据</string>
+    <string name="hobby_dance">跳舞</string>
+    <string name="hobby_read">读书</string>
+    <string name="hobby_select">选择爱好</string>
+    <string name="hobby_selected">您的爱好</string>
+    <string name="hobby_sing">唱歌</string>
+    <string name="hobby_sport">运动</string>
     <string name="image">图片</string>
+    <string name="intent">Intent 示例</string>
+    <string name="submit">提交</string>
 </resources>

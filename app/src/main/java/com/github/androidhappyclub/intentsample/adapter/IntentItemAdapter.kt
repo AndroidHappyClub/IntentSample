@@ -25,26 +25,23 @@
 package com.github.androidhappyclub.intentsample.adapter
 
 import android.content.Context
-import android.view.View
 import com.ave.vastgui.adapter.VastBindAdapter
-import com.ave.vastgui.adapter.widget.AdapterClickListener
+import com.ave.vastgui.adapter.base.ItemWrapper
 import com.github.androidhappyclub.intentsample.BR
+import com.github.androidhappyclub.intentsample.R
+import com.github.androidhappyclub.intentsample.adapter.model.IntentItem
 
 // Author: Vast Gui
 // Email: guihy2019@gmail.com
 // Date: 2023/12/18
 
-class IntentItemAdapter(context: Context) : VastBindAdapter(ArrayList(), context) {
-
-    override fun setVariableId(): Int = BR.item
+class IntentItemAdapter(context: Context)
+    : VastBindAdapter<IntentItem>(context,BR.item) {
 
     fun addItem(title: String, click: () -> Unit) {
         val index = itemCount
-        mDataSource.add(index, IntentItemWrapper(title, object : AdapterClickListener {
-            override fun onItemClick(view: View, pos: Int) {
-                click()
-            }
-        }))
+        mDataSource.add(index, ItemWrapper(IntentItem(title), R.layout.item_intent,
+            { _, _, _ -> click() }))
         notifyItemChanged(index)
     }
 

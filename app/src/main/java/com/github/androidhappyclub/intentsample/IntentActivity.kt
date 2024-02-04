@@ -42,7 +42,6 @@ import android.provider.Settings
 import android.util.Log
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.ave.vastgui.tools.activity.result.contract.TakePhotoContract
 import com.ave.vastgui.tools.manager.filemgr.FileMgr
@@ -58,14 +57,10 @@ import com.github.androidhappyclub.intentsample.databinding.ActivityIntentBindin
 import com.github.androidhappyclub.intentsample.logger.mLogFactory
 import java.io.File
 
-class IntentActivity : AppCompatActivity(R.layout.activity_intent) {
+class IntentActivity : LifecycleActivity(R.layout.activity_intent) {
 
-    companion object {
-        const val FROM_EARTH_KEY = "FROM_EARTH_KEY"
-    }
-
-    private val binding: ActivityIntentBinding by viewBinding(ActivityIntentBinding::bind)
-    private val logger = mLogFactory.getLog(IntentActivity::class.java)
+    private val mBinding: ActivityIntentBinding by viewBinding(ActivityIntentBinding::bind)
+    private val mLogger = mLogFactory.getLog(IntentActivity::class.java)
 
     /**
      * 注册返回数据回调。
@@ -91,14 +86,14 @@ class IntentActivity : AppCompatActivity(R.layout.activity_intent) {
                 matrix.postRotate(90f)
                 // 将原始图片按照旋转矩阵进行旋转，并得到新的图片
                 val bitmap = Bitmap.createBitmap(bmp, 0, 0, bmp.width, bmp.height, matrix, true)
-                binding.ivPhoto.setImageBitmap(bitmap)
+                mBinding.ivPhoto.setImageBitmap(bitmap)
                 bmp.recycle()
             }
         }
 
     private val recorder =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-            logger.d("从录音机中返回")
+            mLogger.d("从录音机中返回")
         }
 
     private val installRequest =
@@ -199,7 +194,7 @@ class IntentActivity : AppCompatActivity(R.layout.activity_intent) {
         }
 
         iiAdapter.addItem("显示启动") {
-            val intent = Intent(this@IntentActivity, FirstActivity::class.java)
+            val intent = Intent(this@IntentActivity, HobbyActivity::class.java)
             if (intent.resolveActivity(packageManager) != null) {
                 startActivity(intent)
             } else {
@@ -215,24 +210,19 @@ class IntentActivity : AppCompatActivity(R.layout.activity_intent) {
         }
 
         iiAdapter.addItem("复杂数据传递") {
-            val intent = Intent(this@IntentActivity, ComplexDataActivity::class.java)
+            val intent = Intent(this, ComplexDataActivity::class.java)
 
             // 传递基本数据类型或String类型数组
             val bd = Bundle()
             bd.putStringArray("StringArray", arrayOf("请求", "全球"))
 
             // 传递基本数据类型或String类型集合
-            intent.putStringArrayListExtra("StringList", object : ArrayList<String>() {
-                init {
-                    add("请求")
-                    add("全球")
-                }
-            })
+            intent.putStringArrayListExtra(ComplexDataActivity.LIST_DATA, arrayListOf("请求", "全球"))
 
             // 传递Bitmap
             val inputStream = resources.assets.open("car.png")
             val bmp = BitmapFactory.decodeStream(inputStream)
-            bd.putParcelable("bitmap", bmp)
+            bd.putParcelable(ComplexDataActivity.IMAGE, bmp)
             intent.putExtras(bd)
 
             if (intent.resolveActivity(packageManager) != null) {
@@ -320,8 +310,8 @@ class IntentActivity : AppCompatActivity(R.layout.activity_intent) {
             takePhoto.launch(intent)
         }
 
-        binding.intents.adapter = iiAdapter
-        binding.intents.layoutManager = GridLayoutManager(this, 3)
+        mBinding.intents.adapter = iiAdapter
+        mBinding.intents.layoutManager = GridLayoutManager(this, 3)
     }
 
     /**
@@ -330,9 +320,9 @@ class IntentActivity : AppCompatActivity(R.layout.activity_intent) {
     private fun downloadApk() {
         // 创建根目录
         FileMgr.makeDir(apkRoot).result.onSuccess {
-            logger.d("${apkRoot.path} 创建成功")
+            mLogger.d("${apkRoot.path} 创建成功")
         }.onFailure {
-            logger.e(it.message.toString())
+            mLogger.e(it.message.toString())
         }
 
         // 创建下载任务下载测试 apk
@@ -379,11 +369,12 @@ class IntentActivity : AppCompatActivity(R.layout.activity_intent) {
      * 从 assets 中读取音频文件
      */
     private fun readWav() {
+        FileMgr.makeDir(wavRoot)
         val file = FileMgr.getAssetsFile("test.wav", wavRoot)
         if (file.exists()) {
-            logger.d("音频文件保存成功")
+            mLogger.d("音频文件保存成功")
         } else {
-            logger.e("音频文件保存失败")
+            mLogger.e("音频文件保存失败")
         }
     }
 
@@ -406,6 +397,10 @@ class IntentActivity : AppCompatActivity(R.layout.activity_intent) {
         } else {
             SimpleToast.showShortMsg("未找到对应应用")
         }
+    }
+
+    companion object {
+        const val FROM_EARTH_KEY = "FROM_EARTH_KEY"
     }
 
 }

@@ -36,22 +36,26 @@ import com.github.androidhappyclub.intentsample.databinding.ActivityComplexDataB
 
 class ComplexDataActivity : AppCompatActivity(R.layout.activity_complex_data) {
 
-    private val binding by viewBinding(ActivityComplexDataBinding::bind)
+    private val mBinding by viewBinding(ActivityComplexDataBinding::bind)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.tvContent.text = AppUtils.getAppName()
-        intent.getStringArrayListExtra("StringList")?.apply {
+        intent.getStringArrayListExtra(LIST_DATA)?.apply {
             val arrayAdapter = ArrayAdapter(
                 this@ComplexDataActivity,
                 android.R.layout.simple_list_item_1,
                 this.toTypedArray()
             )
-            binding.list.adapter = arrayAdapter
+            mBinding.list.adapter = arrayAdapter
         }
         val callback = BmpUtils.getBitmapFromDrawable(R.drawable.android)
-        val bmp = intent.extras?.getParcelable<Bitmap>("bitmap", callback)
-        binding.ivBmp.setImageBitmap(bmp)
+        val bmp = intent.extras?.getParcelable<Bitmap>(IMAGE, callback)
+        mBinding.ivBmp.setImageBitmap(bmp)
+    }
+
+    companion object{
+        const val LIST_DATA = "LIST_DATA"
+        const val IMAGE = "IMAGE"
     }
 }
